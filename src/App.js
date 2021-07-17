@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import axios from 'axios';
+import Data from './Data';
+// import { firestore } from "./firebase";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    isLoading : true,
+    data : {}
+  };
+
+  getData (){
+    const url = `https://jsonplaceholder.typicode.com/posts`;
+    axios.get(url).then((response) => {
+      const data = response.data
+      this.setState ( { isLoading:false, data : data,} );
+    })
+  };
+
+  componentDidMount(){
+    this.getData();
+  }
+
+  render() {
+    const { isLoading, data } = this.state;
+    return (
+      <section>
+        <h1> How to connect Firebase ?</h1>
+        { isLoading
+        ? (
+          <div className="loader">
+            <span className="loader_text">Now Loading...</span>
+          </div>
+        )
+        : (
+          <div className="getData">
+            {data.map( (data) => {
+              return (
+                <Data 
+                key = { data.id }
+                title = { data.title }
+                body = { data.body }
+                />
+              );
+            })}
+          </div>
+        )}
+      </section>
+    )
+  }
 }
 
 export default App;
