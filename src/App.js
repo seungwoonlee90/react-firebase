@@ -7,10 +7,10 @@ import "firebase/firestore";
 class App extends React.Component {
   state = {
     isLoading : true,
-    data : {}
+    _data : {}
   };
+  getData = async() => {
 
-  getData (){
     const firebaseConfig = {
       apiKey: process.env.REACT_APP_API_KEY,
       authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -23,14 +23,8 @@ class App extends React.Component {
     firebase.initializeApp(firebaseConfig);
 
     const db = firebase.firestore();
-    db.collection("product")
-      .get()
-      .then((response) => {
-        response.forEach((doc) => {
-          console.log(doc.data());
-      // this.setState ( { isLoading:false, data : response.data} );
-    })
-    })
+    const response = await db.collection("product").doc("docs").get()
+    this.setState({ isLoading : false, _data :response.data() });
   };
 
   componentDidMount(){
@@ -38,8 +32,8 @@ class App extends React.Component {
   }
 
   render() {
-    const { isLoading, data } = this.state;
-
+    const { isLoading, _data } = this.state;
+    console.log(isLoading, _data)
     return (
       <section>
         <h1> How to connect Firebase ?</h1>
@@ -51,15 +45,11 @@ class App extends React.Component {
         )
         : (
           <div className="getData">
-            {data.map( (data) => {
-              return (
                 <Data 
-                key = { data.id }
-                title = { data.title }
-                body = { data.body }
+                key = { _data.id }
+                title = { _data.title }
+                body = { _data.body }
                 />
-              );
-            })}
           </div>
         )}
       </section>
