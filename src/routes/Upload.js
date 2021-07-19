@@ -5,23 +5,19 @@ import 'firebase/storage';
 class Upload extends React.Component {
 
     render() {
-        function handleSubmit(e) {
+        const onSubmit = async (e) => {
             e.preventDefault();
-            console.log('You clicked submit.');
-
             const db = firebase.firestore();
 
-            db.collection('proudct').doc().set({
-                title : document.getElementById('title').value,
-                body : document.getElementById('body').value
-            });
-
-        }
+            await db.collection('product').add({
+              title : document.getElementById('title').value,
+              body : document.getElementById('body').value
+        })};
 
         return (
             <div className="container">
                 <span>Upload to firebase</span>
-                <form onSubmit= {handleSubmit}>
+                <form onSubmit= {onSubmit}>
                     <input type="text" id="title" placeholder="title" />
                     <input type="text" id="body" placeholder="body" />
                     <button className="btn btn-danger mt-3" id="send">올리기</button>

@@ -1,5 +1,4 @@
 import React from 'react';
-// import axios from 'axios';
 import Data from '../components/Data';
 import firebase from "firebase/app";
 import "firebase/firestore"; 
@@ -23,9 +22,9 @@ class App extends React.Component {
     !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
 
     const db = firebase.firestore();
-    await db.collection("product").get().then((결과)=> {
+    await db.collection("product").get().then((response)=> {
         let array =[]
-        결과.forEach((doc)=>{
+        response.forEach((doc)=>{
             array.push(doc.data())
         })
         this.setState({ isLoading : false, _data :array });
