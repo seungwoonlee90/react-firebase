@@ -1,7 +1,7 @@
 import React from 'react';
 import Data from '../components/Data';
-import firebase from "firebase/app";
-import "firebase/firestore"; 
+import "firebase/firestore";
+import { db } from "../components/firebase";
 
 class App extends React.Component {
   state = {
@@ -9,19 +9,6 @@ class App extends React.Component {
     _data : {}
   };
   getData = async() => {
-
-    const firebaseConfig = {
-      apiKey: process.env.REACT_APP_API_KEY,
-      authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-      projectId: process.env.REACT_APP_PROJECT_ID,
-      storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-      messagingSenderId: process.env.REACT_APP_MESSAGING_ID,
-      appId: process.env.REACT_APP_APP_ID
-    };
-
-    !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
-
-    const db = firebase.firestore();
     await db.collection("product").get().then((response)=> {
         let array =[]
         response.forEach((doc)=>{
@@ -49,10 +36,10 @@ class App extends React.Component {
         )
         : (
           <div className="getData">
-              {_data.map( (data) => {
+              {_data.map( (data, index) => {
                     return(
                         <Data 
-                        key = { data.id }
+                        key = { index }
                         title = { data.title }
                         body = { data.body }
                         />
