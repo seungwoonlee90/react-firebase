@@ -33,7 +33,6 @@ class App extends React.Component {
 
   render() {
     const { isLoading, _data } = this.state;
-    console.log(isLoading, _data)
     return (
       <section>
         <h1> How to connect Firebase ?</h1>
