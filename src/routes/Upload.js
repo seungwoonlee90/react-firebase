@@ -1,7 +1,7 @@
 import React from 'react';
 import firebase from "firebase/app";
 import 'firebase/storage';
-import { firebaseAuth } from "../components/firebase";
+import 'firebase/auth'
 
 class Upload extends React.Component {
 
@@ -11,19 +11,12 @@ class Upload extends React.Component {
             
             const db = firebase.firestore();
             await db.collection('product').add({
-              uid : user.uid,
+              uid : firebase.auth().currentUser.uid,
               title : document.getElementById('title').value,
               body : document.getElementById('body').value,
               date : new Date()
         })
         };
-
-        let user = firebaseAuth.currentUser;
-        if (user) {
-            console.log(user.email)
-        } else {
-            console.log("plz login")
-        }
 
         return (
             <div className="container">
