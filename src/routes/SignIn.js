@@ -6,7 +6,6 @@ import { db } from "../components/firebase";
 class SignIn extends React.Component {
 
     render() {
-        console.log(firebase.auth().currentUser)
 
         const Login = async (e) => {
             e.preventDefault();
@@ -29,6 +28,7 @@ class SignIn extends React.Component {
                 db.collection('user').doc(result.user.uid).set({
                     email : document.getElementById('signup_email').value,
                 })
+                // console.log(result.user.uid)
                 window.location.href = '/'
             }
             )};
@@ -48,7 +48,7 @@ class SignIn extends React.Component {
                     <span>Sign Up</span>
                     <input type="text" id="signup_email" placeholder="email" required />
                     <input type="password" id="signup_password" placeholder="password" required />
-                    <button className="btn btn-danger mt-3" id="signup">LogIn</button>
+                    <button className="btn btn-danger mt-3" id="signup">SignUp</button>
                 </form>
             </div>
         )
