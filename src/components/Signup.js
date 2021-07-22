@@ -18,7 +18,6 @@ class Signup extends React.Component {
                 result.user.updateProfile({
                     displayName : document.getElementById('signup_email').value,
                 });
-                // console.log(result.user.uid)
                 window.location.href = '/'
             }
         )};
