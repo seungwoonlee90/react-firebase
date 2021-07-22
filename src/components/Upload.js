@@ -23,7 +23,7 @@ class Upload extends React.Component {
                 <form onSubmit= {upload}>
                     <input type="text" id="title" placeholder="title" />
                     <input type="text" id="body" placeholder="body" />
-                    <button className="btn btn-danger mt-3" id="send">올리기</button>
+                    <button id="send">올리기</button>
                 </form>
             </div>
         )

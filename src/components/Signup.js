@@ -24,10 +24,9 @@ class Signup extends React.Component {
 
         return(
             <form onSubmit={Signup}>
-                <span>Sign Up</span>
                 <input type="text" id="signup_email" placeholder="email" required />
                 <input type="password" id="signup_password" placeholder="password" required />
-                <button className="btn btn-danger mt-3" id="signup">SignUp</button>
+                <button id="signup">회원가입</button>
             </form>
         )
     }

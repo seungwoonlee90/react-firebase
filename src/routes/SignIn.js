@@ -16,6 +16,7 @@ class SignIn extends React.Component {
                 <span>Sign In</span>
                 <Signin />
                 <Signout />
+                <span>Sign Up</span>
                 <Signup />
             </div>
         )

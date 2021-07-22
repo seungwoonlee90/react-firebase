@@ -18,7 +18,7 @@ class Signin extends React.Component {
         <form onSubmit = {Login}>
             <input type="text" id="email" placeholder="email" required />
             <input type="password" id="password" placeholder="password" required />
-            <button className="btn btn-danger mt-3" id="login">LogIn</button>
+            <button id="login">로그인</button>
         </form>
         )
     }

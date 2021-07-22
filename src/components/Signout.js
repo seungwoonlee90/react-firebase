@@ -14,7 +14,7 @@ class Signout extends React.Component {
 
         return(
         <form onSubmit = {Logout}>
-            <button className="btn btn-danger mt-3" id="logout">Logout</button>
+            <button id="logout">로그아웃</button>
         </form>
         )
     }
