@@ -1,11 +1,13 @@
 import React from 'react';
 import firebase from "firebase/app";
 import "firebase/auth";
-import { db } from "../components/firebase";
+import Signup from '../components/Signup';
 
 class SignIn extends React.Component {
 
     render() {
+
+        console.log(firebase.auth().currentUser)
 
         const Login = async (e) => {
             e.preventDefault();
@@ -21,18 +23,6 @@ class SignIn extends React.Component {
             window.location.href = '/'
         };
 
-        const Signup = async (e) => {
-            e.preventDefault();
-            await firebase.auth().createUserWithEmailAndPassword(document.getElementById('signup_email').value, document.getElementById('signup_password').value).then((result) => {
-
-                db.collection('user').doc(result.user.uid).set({
-                    email : document.getElementById('signup_email').value,
-                })
-                // console.log(result.user.uid)
-                window.location.href = '/'
-            }
-            )};
-
         return (
             <div className="container">
                 <span>Sign In</span>
@@ -44,12 +34,7 @@ class SignIn extends React.Component {
                 <form onSubmit = {Logout}>
                     <button className="btn btn-danger mt-3" id="logout">Logout</button>
                 </form>
-                <form onSubmit = {Signup}>
-                    <span>Sign Up</span>
-                    <input type="text" id="signup_email" placeholder="email" required />
-                    <input type="password" id="signup_password" placeholder="password" required />
-                    <button className="btn btn-danger mt-3" id="signup">SignUp</button>
-                </form>
+                <Signup />
             </div>
         )
     }

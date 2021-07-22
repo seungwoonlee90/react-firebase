@@ -9,14 +9,13 @@ class App extends React.Component {
     _data : {}
   };
   getData = async() => {
-    await db.collection("product").get().then((response)=> {
+      await db.collection("product").onSnapshot((response) => {
         let array =[]
-        response.forEach((doc)=>{
-            array.push(doc.data())
-        })
+          response.forEach((doc)=>{
+              array.push(doc.data())
+          })
         this.setState({ isLoading : false, _data :array });
-    }
-    )
+      })
   };
 
   componentDidMount(){
