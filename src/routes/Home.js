@@ -1,5 +1,6 @@
 import React from 'react';
 import Data from '../components/Data';
+import Loader from '../components/Load'
 import "firebase/firestore";
 import { db } from "../components/firebase";
 
@@ -29,9 +30,7 @@ class App extends React.Component {
         <h1> How to connect Firebase ?</h1>
         { isLoading
         ? (
-          <div className="loader">
-            <span className="loader_text">Now Loading...</span>
-          </div>
+          <Loader />
         )
         : (
           <div className="getData">
