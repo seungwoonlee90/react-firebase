@@ -1,6 +1,6 @@
 import React from 'react';
 import Data from '../components/Data';
-import Loader from '../components/Load'
+import Loader from '../components/Load';
 import "firebase/firestore";
 import { db } from "../components/firebase";
 
