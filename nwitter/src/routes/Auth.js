@@ -38,7 +38,15 @@ const Auth = () => {
     }
 
     const toggleAccount = () => setNewAccount((prev) => !prev);
-
+    const onSocialClick = async (event) => {
+        const {target:{name}} = event;
+        let provider;
+        if(name === "google") {
+            provider = new firebase.auth.GoogleAuthProvider();
+        } 
+        const data = await auth.signInWithEmailAndPassword(provider);
+        console.log(data);
+    }
     return (
         <div>
             <form onSubmit={onSubmit}>
@@ -49,7 +57,7 @@ const Auth = () => {
             </form>
     <span onClick={toggleAccount}>{newAccount ? "Sign in" : "Cerate Account"}</span>
             <div>
-                <button>Continue with google</button>
+                <button onClick={onSocialClick} name="google">Continue with google</button>
             </div>
         </div>
     );
